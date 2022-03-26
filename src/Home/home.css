@@ -1,0 +1,11 @@
+.backgroundImg{
+    width: 100%;
+    height: 600px;
+    background-image: url("./bg.jpg");
+    background-size: 100% 100%;
+
+}
+
+.home{
+    display: flex;
+}

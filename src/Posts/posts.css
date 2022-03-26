@@ -1,0 +1,15 @@
+.posts{
+    flex: 9;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+.postsTitle{
+    width: 75%;
+    font-family: 'Varela', sans-serif;
+    font-size: 25px;
+    font-weight :bold;
+    margin-top: 20px;
+    margin-left: 40%;
+}
+
