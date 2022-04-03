@@ -1,9 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const fetchuser = require('../middleware/fetchuser'); 
+
+const JWT_SECRET="anuragisthegoodboy";
+
 
 //REGISTER
-router.post("/register", async (req, res) => {
+router.post("/register", fetchuser, async (req, res) => {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(req.body.password, salt);
@@ -14,10 +19,13 @@ router.post("/register", async (req, res) => {
     });
 
     const user = await newUser.save();
-    res.status(200).json(user);
+
+    return res.status(200).json(user);
+
   } catch (err) {
-    
-    res.status(500).json(err);
+
+    return res.status(500).json(err);
+
   }
 });
 
@@ -25,15 +33,30 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    !user && res.status(400).json("User not Found");
+
+    if (!user) {
+      return res.status(400).json("User not Found");
+    }
 
     const validated = await bcrypt.compare(req.body.password, user.password);
-    !validated && res.status(400).json("Wrong credentials!");
 
+    if (!validated) {
+      return res.status(400).json("Wrong credentials!");
+    }
+
+    // creating JWT Token changes 02-04-2022
+    const data = {
+      user: {
+        id: user.id
+      }
+    }
+    const authtoken = jwt.sign(data, JWT_SECRET);
     const { password, ...others } = user._doc;
-    res.status(200).json(others);
+
+    return res.json({others, authtoken });
+
   } catch (err) {
-    res.status(500).json("Some Thing Went Wroung");
+    return res.status(500).json("Some Thing Went Wroung");
   }
 });
 

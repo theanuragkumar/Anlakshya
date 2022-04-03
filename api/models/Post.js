@@ -23,6 +23,18 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    link: {
+      type: String,
+      required: false,
+    },
+    linkTitle: {
+      type: String,
+      required: false,
+    },
+    view: {
+      type: Number,
+      required: false,
+    },
   },
   { timestamps: true }
 );

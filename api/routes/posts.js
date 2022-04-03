@@ -1,20 +1,47 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
+const fetchuser = require('../middleware/fetchuser');
+
+// GET Latest 12 POSTS
+
+router.get("/latest", async (req, res) => {
+  const username = req.query.user;
+  const catName = req.query.cat;
+  try {
+    let posts;
+    if (username) {
+      posts = await Post.find({ username }).sort({ _id: -1 }).limit(12);
+    } else if (catName) {
+      posts = await Post.find({
+        categories: {
+          $in: [catName],
+        },
+      }).sort({ _id: -1 }).limit(12);
+    } else {
+      posts = await Post.find().sort({ _id: -1 }).limit(12);
+    }
+    return res.status(200).json(posts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+
 
 //CREATE POST
-router.post("/", async (req, res) => {
+router.post("/", fetchuser, async (req, res) => {
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
-    res.status(200).json(savedPost);
+    return res.status(200).json(savedPost);
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
 //UPDATE POST
-router.put("/:id", async (req, res) => {
+router.put("/:id", fetchuser, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
@@ -26,34 +53,34 @@ router.put("/:id", async (req, res) => {
           },
           { new: true }
         );
-        res.status(200).json(updatedPost);
+        return res.status(200).json(updatedPost);
       } catch (err) {
-        res.status(500).json(err);
+        return res.status(500).json(err);
       }
     } else {
-      res.status(401).json("You can update only your post!");
+      return res.status(401).json("You can update only your post!");
     }
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
 //DELETE POST
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", fetchuser, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.username === req.body.username) {
       try {
         await post.delete();
-        res.status(200).json("Post has been deleted...");
+        return res.status(200).json("Post has been deleted...");
       } catch (err) {
-        res.status(500).json(err);
+        return res.status(500).json(err);
       }
     } else {
-      res.status(401).json("You can delete only your post!");
+      return res.status(401).json("You can delete only your post, Not Others!");
     }
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -61,11 +88,17 @@ router.delete("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    res.status(200).json(post);
+
+    // TO increase the view Count
+    await Post.findByIdAndUpdate(req.params.id, { $inc: { view: 1 } }, { new: true })
+
+    return res.status(200).json(post);
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
+
+
 
 //GET ALL POSTS
 router.get("/", async (req, res) => {
@@ -74,20 +107,21 @@ router.get("/", async (req, res) => {
   try {
     let posts;
     if (username) {
-      posts = await Post.find({ username });
+      posts = await Post.find({ username }).sort({ _id: -1 });
     } else if (catName) {
       posts = await Post.find({
         categories: {
           $in: [catName],
         },
-      });
+      }).sort({ _id: -1 });
     } else {
-      posts = await Post.find();
+      posts = await Post.find().sort({ _id: -1 });
     }
-    res.status(200).json(posts);
+    return res.status(200).json(posts);
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
+
 
 module.exports = router;
