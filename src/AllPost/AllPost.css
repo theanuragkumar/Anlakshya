@@ -1,0 +1,47 @@
+
+.posts{
+    background-color: whitesmoke;
+    padding: 0px;
+    border-radius: 20px;
+}
+.largeAds{
+    margin: 30px;
+}
+.mediumAds{
+    margin: 20px;
+}
+.AllPostTitle{
+    display: flex;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 30px;
+    font-weight :bold;
+    margin-top: 20px;  
+}
+
+.dropdown{
+    display: flex;
+    position: absolute;
+    right: 30px;
+   
+}
+.pagination{
+    justify-content: center;
+}
+.page-link{
+    color: black; 
+    background-color: white;
+}
+.page-link:hover{
+    color: white; 
+    background-color: black;
+}
+@media (max-width:500px) {
+    .AllPostTitle{
+        display: flex;
+        font-family: 'Lora', serif;
+        font-size: 20px;
+        margin-top: 20px;
+        
+    }
+}

@@ -1,0 +1,14 @@
+.refund{
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+}
+.refund-desc{
+    margin-top: 20px;
+}
+@media (max-width:1000px)
+{
+    .refund{
+        padding: 20px;
+    } 
+}

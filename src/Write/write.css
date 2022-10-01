@@ -1,8 +1,18 @@
 .write{
-    padding-top: 50px;
+    padding-top: 20px;
+    margin-bottom: 40px;
+    background-color: white;
+    margin: 50px;
+  
+}
+
+.quillEditor{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    height: 300px;
+ 
 }
 .writeImg{
-
     margin-left: 150px;
     width: 75vw;
     height: 250px;
@@ -19,12 +29,27 @@
     align-items: center;
 }
 
+.writeLinkGroup{
+    margin-top: 20px;
+    margin-left: 150px;
+    align-items: center;
+}
+.link{
+    margin-top: 20px;
+}
+.Cats{
+    margin-top: 15px;
+    padding: 5px;
+    font-size: larger;
+    
+}
+
 .writeIcon{
     width: 25px;
     height: 25px;
     border-radius: 50%;
     border: 1px solid;
-    border-color: white;
+    border-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,8 +63,8 @@
     border: none;
     padding: 20px ;
     width: 70vw;
-    color: white;
-    background-color: rgb(19, 19, 24);
+    color: black;
+
 }
 
 .writeInput:focus{
@@ -47,8 +72,10 @@
 }
 
 .writeText{
+    margin-top: 20px;
     font-size: 20px;
     height: 100vh;
+    margin-bottom: 60px;
 }
 
 .writeSubmit{
@@ -62,4 +89,46 @@
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+}
+
+@media (max-width:600px) {
+
+    .writeImg{
+        margin-left: 50px;
+        width: 75vw;
+        height: 250px;
+        border-radius: 10px;
+        align-items: center;
+        object-fit: cover;
+    }
+
+    .writeForm{
+        position: relative;
+        margin-left: 20px;
+        margin-right: 40px;
+    }
+
+    .writeFormGroup{
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .writeLinkGroup{
+        margin-top: 40px;
+        margin-left: 20px;
+        align-items: center;
+    }
+    .quillEditor{
+        margin-top: 20px;
+        margin-bottom: 100px;
+        height: 400px;
+        margin-left: 15px;
+        margin-right: 40px;
+    }
+    .write{
+    padding-top: 30px;
+    margin: 0px;
+  
+}
 }

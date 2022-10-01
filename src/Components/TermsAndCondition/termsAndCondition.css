@@ -1,0 +1,14 @@
+.terms{
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+}
+.terms-desc{
+    margin-top: 20px;
+}
+@media (max-width:1000px)
+{
+    .terms{
+        padding:20px;
+    } 
+}

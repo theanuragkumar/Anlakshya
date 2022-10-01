@@ -1,24 +1,22 @@
 import React from 'react'
 import "./posts.css";
-import Post from '../Post/post';
+import Post from '../Post/Post';
 
-function posts() {
+function Posts({ posts }) {
+
   return (<>
-
-    <div className='postsContainer'>
-      <div className="postsTitle">Latest Posts </div>
-    
-      <div className="posts">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+   
+      <div className="container">
+        <div className="row">
+          {posts.map(p => (
+            <div className="col-md-4 mb-4" key={p._id}>
+              <Post post={p} key={p._id} />
+            </div>
+          ))}
+        </div>
       </div>
-      
-    </div>
     </>
-  )
+    )
 }
 
-export default posts
+    export default Posts

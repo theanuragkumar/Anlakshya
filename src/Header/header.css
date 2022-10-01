@@ -1,28 +1,43 @@
-.header{
-    margin-top: 0px;
-}
-
-.headerTitles{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Lora', serif;
-}
-
-.headerImg{
+.image{
     width: 100%;
-    height: 50%;
+    height: 90vh;
+    background-size: 100% 100%;
+}
+
+.heading{
+    display: block;
+}
+.headerTitlesLg{
+    color: white;
+    font-size: 70px;
+    font-family: 'Lora', serif;    
 }
 
 .headerTitlesSm{
-    position: absolute;
-    top: 18%;
-    font-size: 20px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Lora', serif;    
+}
+.icon{
+    color: red;
 }
 
-.headerTitlesLg{
-    position: absolute;
-    top: 20%;
-    font-size: 80px;
+.icon:hover{
+    transform: scale(1.1);
 }
+
+@media (max-width:1200px) {
+    .image{
+        height: 600px;
+    }
+    .headerTitlesLg{
+        font-size: 60px;
+    }
+    .headerTitlesSm{
+        font-size: 33px;
+    }
+}
+
+
 

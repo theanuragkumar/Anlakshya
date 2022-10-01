@@ -1,44 +1,74 @@
-import React from 'react'
-import Sidebar from '../Sidebar/sidebar';
-import img from "./anurag_pic.jpg"
+import { React, useContext, useState } from 'react'
+import { Context } from '../Context/Context';
+import axios from 'axios';
+
 import "./setting.css"
-function setting() {
-    return (
-        <div className='settings'>
-            <div className="settingsWrapper">
-                <div className="settingsTitle">
-                    <span className="settingsUpdateTitle">Update Your Account</span>
-                    <span className="settingsDeleteTitle">Delete Your Account</span>
-                </div>
-                <form  className="settingsForm">
-                    <label>Profile Picture</label>
-                    <div className="settingsPP">
-                        <img src={img} 
-                        alt="" />
-                    <label htmlFor='fileInput'>
-                        <i className="settingsPPIcon fa-solid fa-circle-user"></i>
-                    </label>
-                    <input type="file"  id='fileInput' style={{display:"none"}}/>
-                    </div>
-                    <label>UserName</label>
-                    <input type="text" placeholder="Anurag"   />
-                    <label>Email</label>
-                    <input type="email" placeholder="anurag@gmail.com"   />
-                    <label>Password</label>
-                    <input type="password"  />
+function Setting() {
 
-                    <button className='settingsSubmit'>Update</button>
+  const { user } = useContext(Context);
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(false);
 
-                </form>
-            </div>
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    const updatedUser = {
+      userId: user._id,
+      username,
+      email,
+      password,
+    };
+    try {
+      const authtoken = localStorage.getItem("auth-token")
+      axios.put("https://api-anlakshya.azurewebsites.net/api/users/" + user._id, updatedUser, {
+        headers: {
+          "auth-token": authtoken
+        }
+      }).then(() => {
+        setSuccess(true);
+      })
 
 
-            
-            <Sidebar />
-            
-        </div>
+    } catch (error) {
+      alert(error);
+    }
 
-    )
+  }
+
+  const showPassword = ()=>{
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
+
+  return (
+    <div className='settings'>
+      <div className="settingsWrapper">
+        <form className="settingsForm" onSubmit={handleSubmit}>
+          <span className="settingsUpdateTitle">Update Your Account</span>
+          <label>Username</label>
+          <input type="text" placeholder={user.username} onChange={e => setUsername(e.target.value)} readOnly />
+          <label>Email</label>
+          <input type="email" placeholder={user.email} onChange={e => setEmail(e.target.value)} required/>
+          <label>Password</label>
+          <input type="password" onChange={e => setPassword(e.target.value)} id="password" required minLength={5}></input>
+          <label><input type="checkbox" onClick={showPassword} />  Show Password </label>
+          <button className='settingsSubmit' type='submit'>Update</button>
+
+          {success && <span style={{ color: "red", textAlign: "center" }}>Profile has been updated...</span>}
+        </form>  
+      </div>
+
+
+    </div>
+
+  )
 }
 
-export default setting
+export default Setting

@@ -1,0 +1,14 @@
+.privacy{
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+}
+.privacy-desc{
+    margin-top: 20px;
+}
+@media (max-width:1000px)
+{
+    .privacy{
+        padding: 20px;
+    } 
+}
