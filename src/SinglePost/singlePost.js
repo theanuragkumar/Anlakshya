@@ -18,11 +18,11 @@ function SinglePost(props) {
 
   // To Fetch the Post_ID from the Url
   const location = useLocation();
-  const path = location.pathname.split("/")[2];
+  const path = location.pathname.slice(-24);
 
   const [post, setPost] = useState({});
 
-  const PF = "https://api-anlakshya.azurewebsites.net/images/";
+  const PF = "https://api-anlakshya.onrender.com/images/";
 
 
   const { user } = useContext(Context);
@@ -38,18 +38,18 @@ function SinglePost(props) {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });  // To scroll to the Top of window
-
     const getPost = async () => {
       setLoad(true);
       props.setProgress(20);
-      const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/posts/" + path);
+      const API_KEY = process.env.REACT_APP_API_KEY
+      const res = await axios.get("https://api-anlakshya.onrender.com/api/posts/" + path+"?api="+API_KEY);
 
       // Set Title and description for Search Engine
       document.title = res.data.title;
       var div = document.createElement("div");
       div.innerHTML = res.data.desc;
       setDescription(div.innerText);
-      document.querySelector('meta[name="description"]').setAttribute("content", div.innerText);
+      document.querySelector('meta[name="description"]').setAttribute("content", div.innerText.split(' ').slice(0, 40).join(' '));
 
       props.setProgress(60);
       setPost(res.data);
@@ -76,7 +76,7 @@ function SinglePost(props) {
     }
 
     try {
-      await axios.delete("https://api-anlakshya.azurewebsites.net/api/posts/" + path,
+      await axios.delete("https://api-anlakshya.onrender.com/api/posts/" + path,
         { headers, data }
       );
       // TO redirect to Home page
@@ -93,7 +93,7 @@ function SinglePost(props) {
     try {
       setLoad(true);
       let authtoken = localStorage.getItem("auth-token");
-      await axios.put("https://api-anlakshya.azurewebsites.net/api/posts/" + path, {
+      await axios.put("https://api-anlakshya.onrender.com/api/posts/" + path, {
         username: user.username,
         title: title,
         desc: desc,
@@ -141,16 +141,16 @@ function SinglePost(props) {
         <meta id="description" name="description" content={description.split(' ').slice(0, 40).join(' ')} />
         <meta id="og-title" property="og:title" content={title} />
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
-        <link rel="canonical" href={"https://www.anlakshya.tech/post/"+post._id} />
+        <link rel="canonical" href={`https://www.anlakshya.tech/post/${title.replace(/[^a-zA-Z0-9]+/ig, "-")}-${post._id}`} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={description.split(' ').slice(0, 40).join(' ')}  />
-        <meta property="og:url" content={"https://www.anlakshya.tech/post/"+post._id} />
+        <meta property="og:description" content={description.split(' ').slice(0, 40).join(' ')} />
+        <meta property="og:url" content={`https://www.anlakshya.tech/post/${title.replace(/[^a-zA-Z0-9]+/ig, "-")}-${post._id}`} />
         <meta property="og:site_name" content="Anlakshya" />
         <meta property="article:author" content={post.username} />
         <meta property="article:tag" content={title} />
-        <meta property="article:section" content={post.categories+" Tech Jobs"} />
+        <meta property="article:section" content={post.categories + " Tech Jobs"} />
         <meta property="og:updated_time" content={post.updatedAt} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description.split(' ').slice(0, 40).join(' ')} />
@@ -212,19 +212,19 @@ function SinglePost(props) {
 
           <div className="singlePostInfo">
             <span className='singlePostAuthor'>Author :
-              <Link style={{ textDecoration: "none", color: "inherit" }} to={`/post/?user=${post.username}`}><b style={{ color: "lightcoral" }}>{post.username.charAt(0).toUpperCase()+post.username.slice(1)}</b></Link></span>
+              <Link style={{ textDecoration: "none", color: "inherit" }} to={`/post/?user=${post.username}`}><b style={{ color: "red" }}>{post.username.charAt(0).toUpperCase() + post.username.slice(1)}</b></Link></span>
             {/* <span className="badge rounded-pill bg-danger">Visitors : {post.view}</span> */}
             <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
           </div>
 
           {updateMode ?
             <ReactQuill className='quillEditor' theme="snow" modules={modules} placeholder='Tell your story...' value={desc} onChange={setDesc} />
-        
+
             :
             (
-              <p className='singlePostDesc' dangerouslySetInnerHTML={{ __html: desc }} onCopy={(e)=>{
-                e.preventDefault() 
-              }}/>
+              <p className='singlePostDesc' dangerouslySetInnerHTML={{ __html: desc }} onCopy={(e) => {
+                e.preventDefault()
+              }} />
 
             )}
 
@@ -240,11 +240,15 @@ function SinglePost(props) {
               style={{ marginTop: "20px" }}
             />
             :
-            linkTitle && <><h5 className='linkTitle'>{linkTitle} </h5>
-            <div className='InarticleAds'>
-            {window.location.href.includes("anlakshya.tech") ? <InarticleAds/>:""}
-            </div>
-            
+            linkTitle && <>
+              <div className='InarticleAds mb-2'>
+                {window.location.href.includes("anlakshya.tech") ? <InarticleAds /> : ""}
+              </div>
+              <h5 className='linkTitle'>{linkTitle} </h5>
+              <div className='InarticleAds mt-2'>
+                {window.location.href.includes("anlakshya.tech") ? <InarticleAds /> : ""}
+              </div>
+
             </>
 
           }

@@ -3,7 +3,7 @@
    display: flex;
    width: 100%;
    background-color: white;
-   border-radius: 20px;
+   
 }
 
 .quillEditor{
@@ -79,12 +79,13 @@ border-radius: 20px;
   
 }
 .singlePostAuthor{
-   color: lightcoral;
+   color: red;
 }
 .singlePostDate{
-   color: lightcoral;
+   color: red;
 }
 .singlePostDesc{
+
    margin-left: 0px;
    font-size: 17px;
    line-height: 25px;

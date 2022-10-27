@@ -1,8 +1,11 @@
 import React from 'react';
 
-export default class Ads01 extends React.Component {
+
+export default class Ads extends React.Component {
   componentDidMount () {
+    
     (window.adsbygoogle = window.adsbygoogle || []).push({});
+     
   }
 
 render () {
@@ -10,9 +13,9 @@ render () {
         <ins className="adsbygoogle"
         style={{ display: 'block' }}
         data-ad-client="ca-pub-5790649900681714"
-        data-ad-slot="4025822337"
-        data-ad-format="autorelaxed"
-        ></ins>
+        data-ad-slot="5746098113"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
     );
   }
 }

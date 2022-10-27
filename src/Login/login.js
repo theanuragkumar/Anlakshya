@@ -15,21 +15,24 @@ function Login() {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" });
         try {
-          const res = await axios.post("https://api-anlakshya.azurewebsites.net/api/auth/login", {
+          const res = await axios.post("https://api-anlakshya.onrender.com/api/auth/login", {
             email: userRef.current.value,
             password: passwordRef.current.value,
           });
 
           const { authtoken  } = res.data;
-
-
           localStorage.setItem("auth-token", authtoken);
           setSuccess(false);
           
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data.others });
         } catch (err) {
           setSuccess(true);
+          
           dispatch({ type: "LOGIN_FAILURE" });
+          setTimeout(()=>{
+            setSuccess(false);
+          }          
+          , 5000)
         }
       };
 
@@ -43,7 +46,7 @@ function Login() {
                 <input type="password" className=" loginInput" placeholder='Enter Your password...'  ref={passwordRef}/>
                 <button className="loginButton" type='submit' disabled={isFetching}>Login</button>
                 {success &&
-                (<span style={{color:"red", marginTop:"10px" , alignSelf:"center"}}>Invalid credentials</span>)
+                (<span style={{color:"red", marginTop:"10px" , alignSelf:"center"}}>Invalid credentials...</span>)
                 }
                 
             </form>

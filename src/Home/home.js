@@ -23,7 +23,7 @@ function Home(props) {
   useEffect(() => {
     const getCats = async () => {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });  // To scroll to the Top of window
-      const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/categories/");
+      const res = await axios.get("https://api-anlakshya.onrender.com/api/categories/");
       setCats(res.data);
     }
     getCats();
@@ -36,7 +36,7 @@ function Home(props) {
     const fetchPosts = async () => {
       setLoad(true);
       props.setProgress(70);
-      const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/posts/latest" + search);
+      const res = await axios.get("https://api-anlakshya.onrender.com/api/posts/latest" + search);
       setPosts(res.data);
       setLoad(false);
       props.setProgress(100);

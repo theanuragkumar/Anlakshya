@@ -43,14 +43,14 @@ function Write() {
       newPost.photo = filename;
      
       try {
-        await axios.post("https://api-anlakshya.azurewebsites.net/upload", data);
+        await axios.post("https://api-anlakshya.onrender.com/upload", data);
       } catch (error) {
         alert(error);
       }
     }
     try {
       let authtoken = localStorage.getItem("auth-token");
-      const res = await axios.post('https://api-anlakshya.azurewebsites.net/api/posts', newPost ,
+      const res = await axios.post('https://api-anlakshya.onrender.com/api/posts', newPost ,
       {
         headers: {
           "auth-token" : authtoken

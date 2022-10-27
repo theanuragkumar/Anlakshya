@@ -28,7 +28,8 @@ function AllPost(props) {
             document.title = categoryTitle.charAt(0).toUpperCase() + categoryTitle.slice(1) + ' Posts - Anlakshya';
             setLoad(true);
             props.setProgress(30);
-            const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/posts?pageNo=1" +search);
+            const API_KEY= process.env.REACT_APP_API_KEY
+            const res = await axios.get("https://api-anlakshya.onrender.com/api/posts?pageNo=1&api="+API_KEY+search);
             setpostSize(res.data.length);
             props.setProgress(70);
             setPosts(res.data);
@@ -45,7 +46,8 @@ function AllPost(props) {
         const fetchPosts = async () => {          
             setLoad(true);
             props.setProgress(30);
-            const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/posts?pageNo=" + page + search);
+            const API_KEY= process.env.REACT_APP_API_KEY
+            const res = await axios.get("https://api-anlakshya.onrender.com/api/posts?pageNo=" + page+"&api="+API_KEY+ search);
             setpostSize(res.data.length);
             props.setProgress(70);
             setPosts(res.data);
@@ -90,7 +92,7 @@ function AllPost(props) {
                             if (page !== 1) {
                                 setPage(page - 1)
                             }
-                        }}>Previous</span></li>
+                        }}> Previous</span></li>
                         <li className="page-item"><span className="page-link" onClick={() => setPage(1)}>1</span></li>
                         <li className="page-item"><span className="page-link" onClick={() => setPage(2)}>2</span></li>
                         <li className="page-item"><span className="page-link" onClick={() => setPage(3)}>3</span></li>
@@ -99,7 +101,7 @@ function AllPost(props) {
                                 setPage(page + 1)
                             }                           
                         }}
-                            >Next</span></li>
+                            >Next </span></li>
                     </ul>
                 </nav>
             </div>

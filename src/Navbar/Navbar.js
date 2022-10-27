@@ -25,7 +25,7 @@ function Navbar() {
 
     useEffect(() => {
         const getCats = async () => {
-            const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/categories/");
+            const res = await axios.get("https://api-anlakshya.onrender.com/api/categories/");
             setCats(res.data);
         }
         getCats();
@@ -40,7 +40,6 @@ function Navbar() {
                     <img className="navImage" src={logo}
                         alt="Anlakshya" />
                 </div>
-                <div className=''></div>
                 <li className='navListItem'><Link style={{ textDecoration: "none", color: "inherit" }} to='/'><b>HOME</b></Link></li>
                 <li className="navListItem dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
                     <Link style={{ textDecoration: "none", color: "inherit" }} to='/post' ><b>POSTS</b></Link>

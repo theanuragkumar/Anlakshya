@@ -65,6 +65,7 @@ body{
   }
 .dropdown-menu{
     background-color: black;
+    border-radius: 20px;
 }
 .dropdown-item{
     color: white;

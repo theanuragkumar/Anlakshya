@@ -22,7 +22,7 @@ function Setting() {
     };
     try {
       const authtoken = localStorage.getItem("auth-token")
-      axios.put("https://api-anlakshya.azurewebsites.net/api/users/" + user._id, updatedUser, {
+      axios.put("https://api-anlakshya.onrender.com/api/users/" + user._id, updatedUser, {
         headers: {
           "auth-token": authtoken
         }

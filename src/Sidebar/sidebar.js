@@ -10,7 +10,7 @@ function Sidebar() {
     const [cats, setCats] = useState([]);
     useEffect(() => {
         const getCats = async () => {
-            const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/categories/");
+            const res = await axios.get("https://api-anlakshya.onrender.com/api/categories/");
             setCats(res.data);
         }
         getCats();

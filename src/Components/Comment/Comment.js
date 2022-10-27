@@ -17,7 +17,7 @@ function Comment() {
     const path = location.pathname.split("/")[2];
 
     const getComment = async () => {
-        const res = await axios.get("https://api-anlakshya.azurewebsites.net/api/comments/" + path);
+        const res = await axios.get("https://api-anlakshya.onrender.com/api/comments/" + path);
         setcomments(res.data);
 
     }
@@ -32,7 +32,7 @@ function Comment() {
         setButtonEnable(true);
         setAlert(true);
         e.preventDefault();
-        const res = await axios.post('https://api-anlakshya.azurewebsites.net/api/comments/',
+        const res = await axios.post('https://api-anlakshya.onrender.com/api/comments/',
             {
                 createdBy: name,
                 comment,
@@ -65,7 +65,7 @@ function Comment() {
                         <span className='name'>{c.createdBy}</span>
                         {localStorage.getItem("auth-token") && localStorage.getItem("user") && <div className="singlePostEdit">
                             <i className="singlePostIcon fa-solid fa-trash" onClick={async () => {
-                                await axios.delete("https://api-anlakshya.azurewebsites.net/api/comments/" + c._id);
+                                await axios.delete("https://api-anlakshya.onrender.com/api/comments/" + c._id);
                                 getComment();
                             }}></i>
                         </div>}
