@@ -17,7 +17,8 @@ function Comment() {
     const path = location.pathname.split("/")[2];
 
     const getComment = async () => {
-        const res = await axios.get("https://api-anlakshya.onrender.com/api/comments/" + path);
+        const API_KEY= process.env.REACT_APP_API_KEY
+        const res = await axios.get("https://api-anlakshya.onrender.com/api/comments/" + path)+"?api="+API_KEY;
         setcomments(res.data);
 
     }
@@ -32,7 +33,8 @@ function Comment() {
         setButtonEnable(true);
         setAlert(true);
         e.preventDefault();
-        const res = await axios.post('https://api-anlakshya.onrender.com/api/comments/',
+        const API_KEY= process.env.REACT_APP_API_KEY
+        const res = await axios.post('https://api-anlakshya.onrender.com/api/comments/?api='+API_KEY,
             {
                 createdBy: name,
                 comment,

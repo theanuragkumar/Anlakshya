@@ -14,11 +14,10 @@ import Ads from '../Components/Ads/Ads';
 function Home(props) {
   const [posts, setPosts] = useState([]);
   const [load, setLoad] = useState(true);
-  const { search } = useLocation();
-
+  var { search } = useLocation();
+  search = search.replace('?', '&')
   // API CALL for ALL Category   
   const [cats, setCats] = useState([]);
-
 
   useEffect(() => {
     const getCats = async () => {
@@ -36,7 +35,9 @@ function Home(props) {
     const fetchPosts = async () => {
       setLoad(true);
       props.setProgress(70);
-      const res = await axios.get("https://api-anlakshya.onrender.com/api/posts/latest" + search);
+      const API_KEY = process.env.REACT_APP_API_KEY
+      
+      const res = await axios.get("https://api-anlakshya.onrender.com/api/posts/latest?api="+API_KEY + search);
       setPosts(res.data);
       setLoad(false);
       props.setProgress(100);
