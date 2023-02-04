@@ -6,8 +6,10 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
+const commentRoute = require("./routes/comment")
 const multer = require("multer");
 const path = require("path");
+const sitemapRouter = require("./routes/sitemapRouter");
 
 //to enable Cross Origin Api call
 var cors = require('cors');
@@ -25,9 +27,11 @@ app.use("/images", express.static(path.join(__dirname, "/images")));
 const port = process.env.PORT || 5000;
 
 
-app.get("/",(req, res)=>{
+app.get("/status",(req, res)=>{
   res.json("Server Start");
 })
+
+app.use("/", sitemapRouter);
 
 
 mongoose
@@ -49,15 +53,18 @@ const storage = multer.diskStorage({
   },
 });
 
+// to upload the file
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
+// Routes Mapping
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
+app.use("/api/comments", commentRoute);
 
 app.listen(port, () => {
   console.log("Backend is running.");

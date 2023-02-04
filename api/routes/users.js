@@ -7,7 +7,11 @@ const fetchuser = require('../middleware/fetchuser');
 
 //UPDATE
 router.put("/:id", fetchuser,async (req, res) => {
+  console.log("Inside Update")
+  console.log(req.body.userId)
+  console.log(req.params.id)
   if (req.body.userId === req.params.id) {
+    console.log("Inside")
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
       req.body.password = await bcrypt.hash(req.body.password, salt);
@@ -25,7 +29,7 @@ router.put("/:id", fetchuser,async (req, res) => {
       return res.status(500).json(err);
     }
   } else {
-    return res.status(401).json("You can update only your account!");
+    return res.status(401).json("You can update only your account!!!");
   }
 });
 

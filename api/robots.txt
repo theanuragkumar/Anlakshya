@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anlakshya.tech/sitemap.xml

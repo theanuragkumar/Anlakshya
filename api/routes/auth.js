@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser'); 
 
-const JWT_SECRET="anuragisthegoodboy";
+const JWT_SECRET= process.env.JWT_SECRET;
 
 
 //REGISTER
@@ -32,12 +32,12 @@ router.post("/register", fetchuser, async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
       return res.status(400).json("User not Found");
     }
-
+    
     const validated = await bcrypt.compare(req.body.password, user.password);
 
     if (!validated) {
