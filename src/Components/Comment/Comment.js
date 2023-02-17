@@ -18,7 +18,7 @@ function Comment() {
 
     const getComment = async () => {
         const API_KEY= process.env.REACT_APP_API_KEY
-        const res = await axios.get("https://api-anlakshya.onrender.com/api/comments/" + path)+"?api="+API_KEY;
+        const res = await axios.get("https://api-anlakshya.onrender.com/api/comments/" + path+"?api="+API_KEY)
         setcomments(res.data);
 
     }
