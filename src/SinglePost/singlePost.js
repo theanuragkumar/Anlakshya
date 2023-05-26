@@ -271,13 +271,18 @@ function SinglePost(props) {
               onChange={setDesc}
             />
           ) : (
-            <p
-              className="singlePostDesc"
+
+            
+            <div className="ql-snow mt-4">
+            <div
+              className="ql-editor"
               dangerouslySetInnerHTML={{ __html: desc }}
               onCopy={(e) => {
                 e.preventDefault();
               }}
-            />
+            ></div>
+          </div>
+           
           )}
 
           <br></br>
