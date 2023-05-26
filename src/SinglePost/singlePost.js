@@ -193,7 +193,7 @@ function SinglePost(props) {
       ) : (
         <div className="singlePostWrapper">
           {!updateMode ? (
-            <img className="singlePostImg" src={post?.photo} alt={post.title} />
+           post.photo && <img className="singlePostImg" src={post?.photo} alt={post.title} /> 
           ) : (
             <input
               type="text"
