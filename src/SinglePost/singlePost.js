@@ -32,6 +32,7 @@ function SinglePost(props) {
   const [description, setDescription] = useState("");
   const [load, setLoad] = useState(true);
   const [image, setImage] = useState("");
+  const [cateogry, setCategory] = useState("");
 
   useEffect(() => {
     setUpdateMode(false);
@@ -66,6 +67,7 @@ function SinglePost(props) {
       setLink(res.data.link);
       setLinkTitle(res.data.linkTitle);
       setImage(res.data.photo);
+      setCategory(res.data.categories)
       props.setProgress(100);
       setLoad(false);
     };
@@ -108,6 +110,7 @@ function SinglePost(props) {
           link: link,
           linkTitle: linkTitle,
           photo: image,
+          categories: cateogry
         },
         {
           headers: {
@@ -196,6 +199,22 @@ function SinglePost(props) {
         </div>
       ) : (
         <div className="singlePostWrapper">
+
+           {!updateMode ? (
+             (
+              <span className="text-center"
+              ><b>{post.categories.toUpperCase()}</b>
+              </span>
+            )
+          ) : (
+            <input
+              type="text"
+              className="singlePostTitleInput"
+              value={cateogry}
+              placeholder="Category"
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          )}
           {!updateMode ? (
             post.photo && (
               <img

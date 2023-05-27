@@ -104,6 +104,8 @@ function Write() {
               onChange={(e) => setCategory(e.target.value)}
             >
               <option value="">Select</option>
+              <option value="technical">Technical Blogs</option>
+              <option value="jobs">Jobs</option>
               <option value="wipro">Wipro</option>
               <option value="infosys">Infosys</option>
               <option value="tcs">TCS</option>
