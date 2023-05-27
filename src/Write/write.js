@@ -54,7 +54,7 @@ function Write() {
           },
         }
       );
-
+      alert("Blog has been published")
       navigate(`/post/${res.data._id}`);
     } catch (error) {
       alert("error");
@@ -115,7 +115,7 @@ function Write() {
             </select>
             <span className="or"> OR </span>
           </div>
-          {category=="" && <div className="writeLinkGroup">
+          { <div className="writeLinkGroup">
             <input
               type="text"
               placeholder="Create a New category"

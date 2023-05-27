@@ -31,9 +31,10 @@ function SinglePost(props) {
   const [updateMode, setUpdateMode] = useState(false);
   const [description, setDescription] = useState("");
   const [load, setLoad] = useState(true);
-  const [image, setImage] = useState(post.photo);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
+    setUpdateMode(false);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); // To scroll to the Top of window
     const getPost = async () => {
       setLoad(true);
@@ -64,6 +65,7 @@ function SinglePost(props) {
       setDesc(res.data.desc);
       setLink(res.data.link);
       setLinkTitle(res.data.linkTitle);
+      setImage(res.data.photo);
       props.setProgress(100);
       setLoad(false);
     };
@@ -85,6 +87,7 @@ function SinglePost(props) {
         "https://api-anlakshya.onrender.com/api/posts/" + path,
         { headers, data }
       );
+      alert("Blog has been Deleted successfully")
       // TO redirect to Home page
       window.location.replace("/");
     } catch (err) {
@@ -113,6 +116,7 @@ function SinglePost(props) {
         }
       );
       setLoad(false);
+      alert("Blog has been updated successfully")
       setUpdateMode(false);
     } catch (err) {
       alert(err);
@@ -193,11 +197,19 @@ function SinglePost(props) {
       ) : (
         <div className="singlePostWrapper">
           {!updateMode ? (
-           post.photo && <img className="singlePostImg" src={post?.photo} alt={post.title} /> 
+            post.photo && (
+              <img
+                className="singlePostImg"
+                src={post?.photo}
+                alt={post.title}
+              />
+            )
           ) : (
             <input
               type="text"
+              className="singlePostTitleInput"
               placeholder={post.photo}
+              value={image}
               onChange={(e) => setImage(e.target.value)}
             />
           )}
@@ -271,18 +283,15 @@ function SinglePost(props) {
               onChange={setDesc}
             />
           ) : (
-
-            
-            <div className="ql-snow mt-4">
-            <div
-              className="ql-editor"
-              dangerouslySetInnerHTML={{ __html: desc }}
-              onCopy={(e) => {
-                e.preventDefault();
-              }}
-            ></div>
-          </div>
-           
+            <div className="ql-snow">
+              <div
+                className="ql-editor"
+                dangerouslySetInnerHTML={{ __html: desc }}
+                onCopy={(e) => {
+                  e.preventDefault();
+                }}
+              ></div>
+            </div>
           )}
 
           <br></br>
@@ -294,7 +303,7 @@ function SinglePost(props) {
             <input
               type="text"
               value={linkTitle}
-              className="singlePostLinkInput"
+              className="singlePostLinkInput  mt-50"
               placeholder="Enter the Heading for Link"
               onChange={(e) => setLinkTitle(e.target.value)}
               style={{ marginTop: "20px" }}

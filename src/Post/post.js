@@ -7,7 +7,7 @@ function Post({ post }) {
     <div className='post'>
       {
         post.photo ?
-          <img className='postImg' src={PF + post.photo}
+          <img className='postImg' src={post.photo}
             alt='anlakshya' /> : ""
       }
       
