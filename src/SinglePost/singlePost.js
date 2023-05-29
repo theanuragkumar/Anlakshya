@@ -48,6 +48,7 @@ function SinglePost(props) {
           API_KEY
       );
 
+     
       // Set Title and description for Search Engine
       document.title = res.data.title;
       var div = document.createElement("div");
@@ -246,7 +247,7 @@ function SinglePost(props) {
             <h1 className="singlePostTitle">
               {title}
 
-              {(post.username === user?.username) || (user?.username === 'Anurag') && (
+              {post.username === user?.username  && (
                 <div className="singlePostEdit">
                   <i
                     className="singlePostIcon fa-solid fa-pen-to-square"
