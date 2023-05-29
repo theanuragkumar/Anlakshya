@@ -14,8 +14,7 @@ function Comment() {
 
     // To Fetch the Post_ID from the Url
     const location = useLocation();
-    const path = location.pathname.split("/")[2];
-
+    const path = location.pathname.slice(-24);
     const getComment = async () => {
         const API_KEY= process.env.REACT_APP_API_KEY
         const res = await axios.get("https://api-anlakshya.onrender.com/api/comments/" + path+"?api="+API_KEY)
