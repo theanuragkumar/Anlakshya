@@ -49,6 +49,7 @@ function SinglePost(props) {
       );
 
       // Set Title and description for Search Engine
+      alert(res.data.slug)
       document.title = res.data.title;
       var div = document.createElement("div");
       div.innerHTML = res.data.desc;
@@ -105,6 +106,7 @@ function SinglePost(props) {
         "https://api-anlakshya.onrender.com/api/posts/" + path,
         {
           username: user.username,
+          slug: title.replace(/[^a-zA-Z0-9]+/ig, "-"),
           title: title,
           desc: desc,
           link: link,

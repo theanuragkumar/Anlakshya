@@ -23,6 +23,7 @@ function Write() {
     e.preventDefault();
     const newPost = {
       username: user.username,
+      slug: title.replace(/[^a-zA-Z0-9]+/ig, "-"),
       title,
       desc,
       categories: category,
