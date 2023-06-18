@@ -1,0 +1,52 @@
+.settings{
+    display: flex;
+
+}
+.settingsWrapper{
+    flex: 9;
+    padding: 20px;
+
+}
+
+.settingsUpdateTitle{
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: Red;
+}
+
+.settingsForm{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 20px;
+    background-color: white;
+
+}
+
+.settingsForm > label{
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+
+.settingsForm > input{
+    background-color: white;
+    color: black;
+    margin: 10px 0;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+.settingsSubmit{
+    width: 150px;
+    align-self: center;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: teal;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}

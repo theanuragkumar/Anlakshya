@@ -1,0 +1,121 @@
+
+body{
+    background-color: rgb(248, 248, 250);
+}
+.navCenter{
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-family: 'Josefin Sans', sans-serif;
+    z-index: 999;
+    color: white;
+}
+
+.dropdown-item{
+   font-weight: 600;
+}
+.navLeft{
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+.navRight{
+    position: absolute;
+    right: 20px;
+}
+
+.navIcon{
+    font-size: 20px;
+    margin-right: 5px;
+    color: black;
+    cursor: pointer;
+}
+
+.navImage{
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.navListItem{
+    margin-left: 16px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    list-style: none;
+}
+
+.navSearch{
+    color: black;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.link{
+    text-decoration:"none";
+    color:"inherit";
+  }
+.dropdown-menu{
+    background-color: black;
+    border-radius: 20px;
+}
+.dropdown-item{
+    color: white;
+    font-size: 16px;
+}
+.navMobile{
+    display: none;
+}
+@media (max-width: 1000px){
+    
+    .navMobile{
+        background-color: black;
+        color: white;
+        padding:20px 20px 20px 20px; 
+        width: 100%;
+        position: sticky;
+        top: 0;
+        display: block;
+        z-index: 999;
+        color: white;
+
+    }
+    .navCenter{
+        display: none;
+    }
+    .nav{
+        display: flex;
+        justify-content: space-between;
+    }
+    .navbar-toggler{
+        background: rgb(238, 233, 233);
+        color: rgb(3, 3, 3);
+        border-radius: 50%;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navDropdown{
+        margin-top: 20px;
+    }
+    .navListItem{
+        font-size: 16px;
+        font-weight: 350;
+    }
+    .logo{
+        display: flex;
+        font-weight: bolder;
+        font-family: 'Varela', sans-serif;
+        align-items: center;
+    }
+
+} 

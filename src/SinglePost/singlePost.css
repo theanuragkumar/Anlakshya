@@ -1,0 +1,197 @@
+
+.singlePost{  
+   display: flex;
+   width: 100%;
+   background-color: white;
+   padding: 0px;
+   
+   
+}
+
+.quillEditor{
+   margin-top: 20px;
+   margin-bottom: 40px ;
+   height: 90vh !important;
+}
+.ql-editor{
+   padding: 0 !important;
+   margin: 0;
+}
+
+
+
+.singlePostImg{
+width: 100%;
+height: 300px;
+border-radius: 5px;
+object-fit:contain;
+border-radius: 20px;
+}
+
+.singlePostWrapper{
+   width: 100%;
+   margin: 50px;
+   padding: 20px;
+   padding-right: 0;
+   display: flex;
+   flex-direction: column;
+}
+
+.singlePostTitle{
+   text-align: center;
+   margin: 10px;
+   font-weight: bold;
+   font-size: 32px;
+}
+.singlePostTitleInput{
+   width: 100%;
+   text-align: center;
+   margin: 10px;
+   font-size: 22px;
+   border: none;
+   border-bottom: 1px solid black;
+
+}
+.singlePostTitleInput:focus{
+   outline: none;
+}
+.singlePostLinkInput:focus{
+   outline: none;
+}
+
+
+.singlePostEdit{
+   float: right;
+   font-size: 25px;
+}
+
+.singlePostIcon{
+
+   margin-left: 10px;
+   cursor: pointer;
+}
+
+.singlePostIcon:first-child{
+
+   color: blue;
+}
+.singlePostIcon:last-child{
+
+   color: red;
+}
+
+.singlePostInfo{
+   color: aqua;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   display: flex;
+   justify-content: space-between;
+   font-size: 16px;
+  
+}
+.singlePostAuthor{
+   color: red;
+}
+.singlePostDate{
+   color: red;
+}
+.singlePostDesc{
+
+   margin-left: 0px;
+   font-size: 17px;
+   line-height: 25px;
+   white-space: pre-wrap;
+   overflow-wrap: break-word;
+   overflow-x: scroll;
+
+}
+.singlePostDesc::first-letter{
+   font-size: 30px;
+   font-weight: 600;
+}
+
+.singlePostDescInput{
+   width: 100%;
+   border: none;
+   font-size: 17px;
+   line-height: 25px;
+}
+.singlePostDescInput:focus{
+   outline: none;
+}
+
+.singlePostButton{
+   border: none;
+   background-color: teal;
+   width: 100px;
+   color: white;
+   border-radius: 5px;
+   padding: 5px;
+   cursor: pointer;
+   align-self: flex-end;
+   margin-top: 20px;
+}
+
+.linkTitle{
+   color: red;
+   align-self: center;
+   justify-self: center;
+}
+
+.singlePostLinkInput{   
+   display: block;
+   width: 100%;
+   text-align: center;
+   font-size: 20px;
+   border: none;
+   
+   border-bottom: 1px solid black;
+}
+
+.mt-50{
+   margin-top: 80px !important;
+}
+
+@media (max-width:600px) {
+
+   .singlePost{ 
+      width: 100%;
+      margin: 0px ; 
+      padding: 20px;
+      background-color: white;
+     
+   }
+   .singlePostTitle{
+      text-align: center;
+      margin: 10px;
+      font-weight: bold;
+      font-size: 24px;
+   }
+   .singlePostDesc{
+      margin-left: 0px;
+      font-size: 16px;
+      line-height: 26px;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      overflow-x: scroll;
+   
+   }
+   .singlePostWrapper{
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+   }
+   .singlePostImg{
+      margin-top: 20px;
+      width: 100%;
+      height: 200px;
+      border-radius: 50px;
+      object-fit:contain;
+      }
+
+   }
+   @media (max-width:800px) {
+      .badge{
+         display: none;
+      }  
+      }

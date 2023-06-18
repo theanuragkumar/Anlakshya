@@ -1,0 +1,40 @@
+
+.home{
+    display: flex;
+}
+.largeAds{
+    margin: 30px;
+}
+.mediumAds{
+    margin: 20px;
+}
+.LatestPostTitle{
+    display: flex;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 38px;
+    font-weight :bold;
+    margin-top: 20px;  
+}
+
+.loadingIcon{
+    margin-top: 20px;
+    margin-left: 50%;
+}
+
+@media (max-width: 1000px){
+    .home{
+        margin-top: 40px;
+    }
+    .col-8{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .col-4{
+        margin-top: 20px;
+        width: 100%;
+    }
+    .LatestPostTitle{
+        font-size: 22px; 
+    }
+} 

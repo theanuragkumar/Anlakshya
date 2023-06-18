@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./Navbar/Navbar";
+import Home from "./Home/home";
+import Single from "./Page/single";
+import Write from "./Write/write";
+import Setting from "./Settings/setting";
+import Login from "./Login/login";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { Context } from "./Context/Context";
+import { useContext } from "react";
+import AllPost from "./AllPost/AllPost";
+import LoadingBar from 'react-top-loading-bar'
+import React, { useState } from 'react';
+import About from "./Components/AboutUs/About";
+
+
 
 function App() {
+    const {user}= useContext(Context);
+    const [progress, setProgress] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        height={3}  
+      />
+      <Routes>
+        <Route  path="/" element={<Home setProgress={setProgress} />} />
+        <Route  path="/post/" element={<AllPost setProgress={setProgress}/>} />
+        <Route  path="/login" element={user ? <Home  setProgress={setProgress}/> : <Login setProgress={setProgress}/>} />
+        <Route  path="/post/:postId" element={<Single setProgress={setProgress}/>} />
+        <Route  path="/write" element={user ?  <Write setProgress={setProgress}/> : <Home setProgress={setProgress}/> } />
+        <Route  path="/settings" element={user ? <Setting /> : <Login />} />
+        <Route  path="/about" element={<About page="about"/>} />
+        <Route  path="/privacy" element={<About page="privacy"/>} />
+        <Route  path="/terms" element={<About page="terms"/>} />
+        <Route  path="/refund" element={<About page="refund"/>} />
+      </Routes>
+      
+    </Router>
+    
   );
 }
 

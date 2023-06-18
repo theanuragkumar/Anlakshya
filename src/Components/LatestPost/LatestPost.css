@@ -1,0 +1,20 @@
+.latestPostLinks{
+    padding: 25px;
+    background-color: white;
+    height: fit-content;   
+    margin-bottom: 20px;
+}
+.latestPostHeading{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 15px;
+    
+}
+
+.latestPostTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:650 ; 
+}

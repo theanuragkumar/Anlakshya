@@ -1,0 +1,76 @@
+.comment{
+    padding: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.showComment{
+    padding: 30px;
+    max-height: 400px;
+    background-color: white;
+    overflow-y: scroll;
+}
+.name{
+    margin-top: 20px;
+    font-size: medium;
+    font-weight: bold;
+    color: red;
+}
+.commentHeading{
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+
+}
+.commentTitle{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.commentForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.commentForm > label{
+    margin: 10px 0;
+
+}
+.commentForm > input{
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-bottom: 1px solid black;
+
+}
+
+.commentForm > textarea{
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-bottom: 1px solid black;
+
+}
+
+.commentButton{
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: rgb(236, 22, 22);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.commentButton:hover{
+    background-color: red;
+}
