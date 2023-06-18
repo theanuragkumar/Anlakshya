@@ -6,8 +6,7 @@ import Post from '../Post/post';
 import Sidebar from '../Sidebar/sidebar';
 import "./AllPost.css";
 import Contact from '../Contact/Contact';
-import Ads from '../Components/Ads/Ads';
-// import Ads01 from '../Components/Ads/Ads01';
+import Ads from '../Components/Ads/Ads01';
 
 function AllPost(props) {
 

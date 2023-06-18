@@ -2,7 +2,7 @@ import React from 'react'
 import Contact from '../../Contact/Contact'
 import Sidebar from '../../Sidebar/sidebar'
 import { useEffect } from 'react';
-import Ads from '../Ads/Ads';
+import Ads from '../../Components/Ads/Ads01';
 import Footer from '../../Footer/Footer';
 import "./about.css";
 import LatestPost from "../LatestPost/LatestPost"

@@ -5,8 +5,8 @@ import LatestPost from '../Components/LatestPost/LatestPost';
 import Footer from '../Footer/Footer';
 // import Contact from '../Contact/Contact';
 import Comment from '../Components/Comment/Comment';
-import Ads from '../Components/Ads/Ads';
-// import Ads01 from '../Components/Ads/Ads01';
+// import Ads from '../Components/Ads/Ads';
+import Ads from '../Components/Ads/Ads01';
 function Single(props) {
   
   return (<>
@@ -15,7 +15,7 @@ function Single(props) {
         <div className='col-9'>
           <SinglePost setProgress={props.setProgress}></SinglePost>
           <div className='mediumAds'>
-            <Ads></Ads>
+            <Ads ></Ads>
           </div>
           <div className='mediumAds mt-2'>
             <Ads></Ads>

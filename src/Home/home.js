@@ -8,8 +8,8 @@ import { useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import Contact from '../Contact/Contact';
-import Ads from '../Components/Ads/Ads';
-// import Ads01 from '../Components/Ads/Ads01';
+
+import Ads from '../Components/Ads/Ads01';
 
 function Home(props) {
   const [posts, setPosts] = useState([]);
